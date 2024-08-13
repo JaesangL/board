@@ -22,7 +22,7 @@ public class BoardController {
 	public String boardList(Model model) {
 		List<BoardDTO> boards = boardService.getAllBoards();
 		model.addAttribute("boards", boards);
-		return "boardMain";
+		return "index";
 //        return boardService.getAllBoards();
 	}
 
