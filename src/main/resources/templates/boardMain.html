@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	    <script th:src="@{/js/board.js}"></script>
+	    <script>
+        $('#postForm').on('submit', function(event) {
+            event.preventDefault();
+            let postData = {
+                title: $('#title').val(),
+                author: $('#author').val(),
+                content: $('#content').val()
+            };
+            insertBoard(postData);
+        });
+    </script>
 </head>
 <body>
     <div class="board-name">게시판</div>
@@ -31,26 +44,11 @@
         </tbody>
     </table>
 
-    <button class="write-button" onclick="location.href='boardWrite.html'">글쓰기</button>
+    <button class="write-button" onclick="location.href='/board/write'">글쓰기</button>
 
     <div class="pagination">
         <!-- 페이지 넘기기 버튼 -->
     </div>
-
-	    <!-- jQuery 라이브러리 -->
-	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	    <!-- 외부 JavaScript 파일 -->
-	    <script th:src="@{/js/board.js}"></script>
-	    <script>
-        $('#postForm').on('submit', function(event) {
-            event.preventDefault();
-            let postData = {
-                title: $('#title').val(),
-                author: $('#author').val(),
-                content: $('#content').val()
-            };
-            insertBoard(postData);
-        });
-    </script>
+	    
 </body>
 </html>

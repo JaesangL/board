@@ -1,39 +1,11 @@
-/** 
-$(document).ready(function() {
-    loadBoardList();
-});
-
-
-// board.js
-function loadBoardList() {
-    $.ajax({
-        url: 'http://localhost:8080/board/main',
-        type: 'GET',
-        dataType: "json",
-        success: function(data) {
-            let tableBody = $('.board-list tbody');
-            tableBody.empty();
-            data.forEach(function(post) {
-                let row = `
-                    <tr>
-                        <td>${post.id}</td>
-                        <td>${post.title}</td>
-                        <td>${post.author}</td>
-                        <td>${post.date}</td>
-                        <td>${post.views}</td>
-                    </tr>`;
-                tableBody.append(row);
-            });
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error: ' + textStatus, errorThrown);
-            alert('게시글 목록을 불러오는 데 실패했습니다.');
-        }
-    });
-}
-*/
 //게시글 작성
-function insertBoard(postData) {
+function insertBoard() {
+	const postData = {
+        title: document.getElementById('title').value,
+        author: document.getElementById('author').value,
+        content: document.getElementById('content').value
+    };
+	
     $.ajax({
         url: '/board/insert',
         type: 'POST',
@@ -41,7 +13,7 @@ function insertBoard(postData) {
         data: JSON.stringify(postData),
         success: function(post) {
             alert('게시글이 추가되었습니다.');
-            location.reload(); // 페이지를 새로고침하여 Thymeleaf로 렌더링된 데이터를 다시 로드
+            window.location.href = '/board/main'; // 메인페이지로 리다이텍트
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error('Error: ' + textStatus, errorThrown);

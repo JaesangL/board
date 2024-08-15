@@ -8,8 +8,8 @@ public interface BoardDAO {
 
 	public List<BoardDTO> selectAll();
 	
-//	public boolean insertBoard();
-//	
+	public void insertBoard(BoardDTO boardDTO);
+	
 //	public boolean updateBoard();
 //	
 //	public boolean deleteBoard();

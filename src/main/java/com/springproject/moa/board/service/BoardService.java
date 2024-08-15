@@ -7,5 +7,6 @@ import com.springproject.moa.board.dto.BoardDTO;
 public interface BoardService {
 	
 	public List<BoardDTO> getAllBoards();
+	public void insertBoard(BoardDTO boardDTO);
 
 }

@@ -13,7 +13,7 @@ public class BoardMapper {
 		}
 		
 		return Boards.boardBuilder()
-				.id(dto.getId())
+				.id(dto.getId()!= null ? dto.getId() : null)// id가 null일 경우 null로 설정
 				.title(dto.getTitle())
 				.author(dto.getAuthor())
 				.date(dto.getDate())

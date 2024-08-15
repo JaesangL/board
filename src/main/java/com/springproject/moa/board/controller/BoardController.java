@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springproject.moa.board.dto.BoardDTO;
 import com.springproject.moa.board.service.BoardService;
@@ -22,7 +24,7 @@ public class BoardController {
 	public String boardList(Model model) {
 		List<BoardDTO> boards = boardService.getAllBoards();
 		model.addAttribute("boards", boards);
-		return "index";
+		return "boardMain";
 //        return boardService.getAllBoards();
 	}
 
@@ -30,5 +32,12 @@ public class BoardController {
 	public String boardWriteForm() {
 		return "boardWrite";
 	}
+	
+	@PostMapping("/board/insert")
+	@ResponseBody
+	public BoardDTO insertBoard(@RequestBody BoardDTO boardDTO) {
+        boardService.insertBoard(boardDTO);
+        return boardDTO;
+    }
 
 }
