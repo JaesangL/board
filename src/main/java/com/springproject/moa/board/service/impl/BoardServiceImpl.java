@@ -22,7 +22,6 @@ public class BoardServiceImpl implements BoardService {
     
     @Override
     public void insertBoard(BoardDTO boardDTO) {
-    	boardDTO.setId(null);// id 필드를 null로 설정하여 insert시 자동으로 id가 생성되도록 함
         boardDAO.insertBoard(boardDTO);
     }
 }

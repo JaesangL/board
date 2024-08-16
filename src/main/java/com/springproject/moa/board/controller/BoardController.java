@@ -1,5 +1,6 @@
 package com.springproject.moa.board.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class BoardController {
 	@PostMapping("/board/insert")
 	@ResponseBody
 	public BoardDTO insertBoard(@RequestBody BoardDTO boardDTO) {
+		boardDTO.setDate(LocalDate.now()); // date 필드를 현재 날짜로 설정
         boardService.insertBoard(boardDTO);
         return boardDTO;
     }

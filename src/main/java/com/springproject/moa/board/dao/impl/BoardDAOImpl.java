@@ -16,6 +16,7 @@ public class BoardDAOImpl implements BoardDAO{
 	@Autowired
 	private BoardRepository boardRepository;
 	
+	//게시판 목록 조회
 	@Override
 	public List<BoardDTO> selectAll(){
         List<Boards> boards = boardRepository.findAll();
@@ -32,6 +33,7 @@ public class BoardDAOImpl implements BoardDAO{
         return dto;
 	}
 	
+	//게시판 글쓰기
 	@Override
     public void insertBoard(BoardDTO boardDTO) {
         Boards board = BoardMapper.toEntity(boardDTO);
@@ -41,9 +43,9 @@ public class BoardDAOImpl implements BoardDAO{
         }
         try {
             boardRepository.save(board);
-            System.out.println("Board saved successfully");
+            System.out.println("글쓰기 성공!");
         } catch (Exception e) {
-            System.out.println("Error saving board: " + e.getMessage());
+            System.out.println("글쓰기 실패: " + e.getMessage());
         }
     }
 	

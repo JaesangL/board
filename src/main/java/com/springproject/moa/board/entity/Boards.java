@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 public class Boards {
 	
 	@Id
-	@Column(name = "id", length = 10, updatable = false, nullable = false)
+	@Column(name = "id", length = 10, updatable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 자동증가 설정
-	private long id;
+	private Long id;
 	
 	@Column(name = "title", length = 20, nullable = false)
 	private String title;
