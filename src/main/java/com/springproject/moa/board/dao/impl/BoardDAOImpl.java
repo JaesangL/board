@@ -26,6 +26,7 @@ public class BoardDAOImpl implements BoardDAO{
 					board.getId(),
 					board.getTitle(),
 					board.getAuthor(),
+					board.getContent(),
 					board.getDate(),
 					board.getViews()
 					));
@@ -49,4 +50,32 @@ public class BoardDAOImpl implements BoardDAO{
         }
     }
 	
+	 //게시판 상세보기
+	@Override
+    public BoardDTO getBoardById(Long id) {
+        Boards board = boardRepository.findById(id).orElse(null);
+        if (board == null) {
+            return null;
+        }
+        return new BoardDTO(
+            board.getId(),
+            board.getTitle(),
+            board.getAuthor(),
+            board.getContent(),
+            board.getDate(),
+            board.getViews()
+        );
+    }
+	
+	//조회수 증가
+	@Override
+	public void increaseViews(Long id) {
+		Boards board = boardRepository.findById(id).orElse(null);
+		if (board == null) {
+			System.out.println("no data in board");
+			return;
+		}
+		board.increaseViews();
+		boardRepository.save(board);
+	}
 }

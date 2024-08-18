@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,5 +42,11 @@ public class BoardController {
         boardService.insertBoard(boardDTO);
         return boardDTO;
     }
-
+	
+	@GetMapping("/board/detail/{id}")
+    public String getBoardDetail(@PathVariable("id") Long id, Model model) {
+        BoardDTO boardDTO = boardService.getBoardById(id);
+        model.addAttribute("board", boardDTO);
+        return "boardDetail";
+    }
 }

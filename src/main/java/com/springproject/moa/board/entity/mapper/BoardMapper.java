@@ -16,9 +16,25 @@ public class BoardMapper {
 //				.id(dto.getId()) id 자동증가로 인해 주석처리
 				.title(dto.getTitle())
 				.author(dto.getAuthor())
+				.content(dto.getContent())
 				.date(dto.getDate())
 				.views(dto.getViews())
 				.build();
 	}
+	
+	public static BoardDTO toDTO(Boards board) {
+        if (board == null) {
+            System.out.println("no data in entity");
+            return null;
+        }
+        BoardDTO dto = new BoardDTO();
+        dto.setId(board.getId());
+        dto.setTitle(board.getTitle());
+        dto.setAuthor(board.getAuthor());
+        dto.setContent(board.getContent());
+        dto.setDate(board.getDate());
+        dto.setViews(board.getViews());
+        return dto;
+    }
 
 }

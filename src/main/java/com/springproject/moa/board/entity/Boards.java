@@ -30,6 +30,9 @@ public class Boards {
 	@Column(name = "author", length = 20, nullable = false)
 	private String author;
 	
+	@Column(name = "content", length = 200, nullable = false)
+	private String content;
+	
 	@Column(name = "date", length = 20, nullable = false)
 	private LocalDate date;
 	
@@ -37,15 +40,20 @@ public class Boards {
 	private int views;
 
 	@Builder(builderMethodName = "boardBuilder")
-	private Boards(long id, String title, String author, LocalDate date, int views) {
+	private Boards(long id, String title, String author, String content ,LocalDate date, int views) {
 
 		this.id = id;
 		this.title = title;
 		this.author = author;
+		this.content = content;
 		this.date = date;
 		this.views = views;
 	}
 	
+	// 조회수 증가 메소드
+	public void increaseViews() {
+        this.views += 1;
+    }
 	
 
 }

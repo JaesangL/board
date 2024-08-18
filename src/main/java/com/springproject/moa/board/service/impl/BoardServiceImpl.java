@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.springproject.moa.board.dao.BoardDAO;
 import com.springproject.moa.board.dto.BoardDTO;
+import com.springproject.moa.board.entity.Boards;
 import com.springproject.moa.board.service.BoardService;
 
 @Service
@@ -24,4 +25,10 @@ public class BoardServiceImpl implements BoardService {
     public void insertBoard(BoardDTO boardDTO) {
         boardDAO.insertBoard(boardDTO);
     }
+    
+    @Override
+    public BoardDTO getBoardById(Long id) {
+        return boardDAO.getBoardById(id);
+    }
+    
 }

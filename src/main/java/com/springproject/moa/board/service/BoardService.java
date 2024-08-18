@@ -8,5 +8,6 @@ public interface BoardService {
 	
 	public List<BoardDTO> getAllBoards();
 	public void insertBoard(BoardDTO boardDTO);
+	public BoardDTO getBoardById(Long id);
 
 }

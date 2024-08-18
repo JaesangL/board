@@ -18,6 +18,7 @@ public class BoardDTO {
 	private Long id;
     private String title;
     private String author;
+    private String content;
     private LocalDate date;
     private int views;
 	
