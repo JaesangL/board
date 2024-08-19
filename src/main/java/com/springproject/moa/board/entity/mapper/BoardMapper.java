@@ -12,14 +12,28 @@ public class BoardMapper {
 			return null;
 		}
 		
-		return Boards.boardBuilder()
-//				.id(dto.getId()) id 자동증가로 인해 주석처리
-				.title(dto.getTitle())
-				.author(dto.getAuthor())
-				.content(dto.getContent())
-				.date(dto.getDate())
-				.views(dto.getViews())
-				.build();
+//		return Boards.boardBuilder()
+////				.id(dto.getId()) id 자동증가로 인해 주석처리
+//				.title(dto.getTitle())
+//				.author(dto.getAuthor())
+//				.content(dto.getContent())
+//				.date(dto.getDate())
+//				.views(dto.getViews())
+//				.build();
+		
+		Boards.BoardsBuilder builder = Boards.boardBuilder()
+                .title(dto.getTitle())
+                .author(dto.getAuthor())
+                .content(dto.getContent())
+                .date(dto.getDate())
+                .views(dto.getViews());
+        
+        // Update or Delete 동작에 필요한 id 값이 취득
+        if (dto.getId() != null) {
+            builder.id(dto.getId());
+        }
+
+        return builder.build();
 	}
 	
 	public static BoardDTO toDTO(Boards board) {

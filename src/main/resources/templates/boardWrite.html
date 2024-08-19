@@ -7,14 +7,6 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/js/board.js}"></script>
-    <script>
-        $(document).ready(function() {
-            $('#postForm').on('submit', function(event) {
-                event.preventDefault(); // 폼의 기본 제출 동작을 막음
-                insertBoard(); // AJAX 요청을 수동으로 트리거
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="container">

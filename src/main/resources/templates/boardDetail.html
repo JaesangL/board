@@ -12,6 +12,10 @@
     <div class="container">
         <h1>게시글 상세보기</h1>
         <form id="postForm">
+        	<div class="form-group" style="display: none;" >
+                <label for="id">게시번호:</label>
+                <input type="text" id="boardId" name="boardId" th:value="${board.id}" readonly>
+            </div>
             <div class="form-group">
                 <label for="title">제목:</label>
                 <input type="text" id="title" name="title" th:value="${board.title}" readonly>
@@ -25,7 +29,14 @@
                 <textarea id="content" name="content" rows="10" readonly th:text="${board.content}"></textarea>
             </div>
             <div class="form-actions">
-                <button type="button" th:onclick="'location.href=\'/board/update/' + ${board.id} + '\''">수정</button>
+            <div class="form-group" style="display: none;" >
+                <label for="id">게시번호:</label>
+                <input type="text" id="views" name="views" th:value="${board.views}" readonly>
+            </div>
+                <button type="button" id="editButton">수정</button>
+                <button type="button" id="saveButton" style="display:none;">저장</button>
+                <button type="button" id="deleteButton">삭제</button>
+                <button type="button" id="backButton">뒤로가기</button>
             </div>
         </form>
     </div>

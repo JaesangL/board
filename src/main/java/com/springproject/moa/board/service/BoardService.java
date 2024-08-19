@@ -9,5 +9,7 @@ public interface BoardService {
 	public List<BoardDTO> getAllBoards();
 	public void insertBoard(BoardDTO boardDTO);
 	public BoardDTO getBoardById(Long id);
+	public void increaseViews(Long id);
+	public void updateBoard(BoardDTO boardDTO);
 
 }

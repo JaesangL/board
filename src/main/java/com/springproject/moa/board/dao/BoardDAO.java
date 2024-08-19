@@ -3,7 +3,6 @@ package com.springproject.moa.board.dao;
 import java.util.List;
 
 import com.springproject.moa.board.dto.BoardDTO;
-import com.springproject.moa.board.entity.Boards;
 
 public interface BoardDAO {
 
@@ -14,9 +13,9 @@ public interface BoardDAO {
 	public BoardDTO getBoardById(Long id);
 	
 	public void increaseViews(Long id);
+	
+	public void updateBoard(BoardDTO boardDTO);
 
-//	public boolean updateBoard();
-//	
 //	public boolean deleteBoard();
 	
 }

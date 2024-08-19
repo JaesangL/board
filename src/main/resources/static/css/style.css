@@ -52,6 +52,10 @@ textarea {
     justify-content: flex-end;
 }
 
+.form-actions button {
+            margin-right: 10px; /* 버튼 사이에 공백 추가 */
+        }
+
 button {
     padding: 10px 20px;
     background-color: #007bff;
