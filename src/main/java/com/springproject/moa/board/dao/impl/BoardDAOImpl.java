@@ -2,7 +2,6 @@ package com.springproject.moa.board.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,6 +12,7 @@ import com.springproject.moa.board.dao.BoardRepository;
 import com.springproject.moa.board.dto.BoardDTO;
 import com.springproject.moa.board.entity.Boards;
 import com.springproject.moa.board.entity.mapper.BoardMapper;
+import com.springproject.moa.board.excetpion.BoardNotFoundException;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -58,10 +58,8 @@ public class BoardDAOImpl implements BoardDAO{
 	 //게시판 상세보기
 	@Override
     public BoardDTO getBoardById(Long id) {
-        Boards board = boardRepository.findById(id).orElse(null);
-        if (board == null) {
-            return null;
-        }
+		Boards board = boardRepository.findById(id).orElseThrow(() -> 
+        	new BoardNotFoundException("게시글이 존재하지 않습니다. ID: " + id));
         return new BoardDTO(
             board.getId(),
             board.getTitle(),
@@ -76,11 +74,8 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	@Transactional
 	public void increaseViews(Long id) {
-		Boards board = boardRepository.findById(id).orElse(null);
-		if (board == null) {
-			System.out.println("no data in board");
-			return;
-		}
+		Boards board = boardRepository.findById(id)
+		        .orElseThrow(() -> new BoardNotFoundException("게시글이 존재하지 않습니다. ID: " + id));
 		board.increaseViews();
 		boardRepository.save(board);
 		System.out.println("조회수 증가 성공");
@@ -90,15 +85,11 @@ public class BoardDAOImpl implements BoardDAO{
 	@Override
 	@Transactional
 	public void updateBoard(BoardDTO boardDTO) {
-	    // ID가 존재하는지 확인
-	    Optional<Boards> existingBoard = boardRepository.findById(boardDTO.getId());
-	    if (!existingBoard.isPresent()) {
-	        System.out.println("Board with ID " + boardDTO.getId() + " does not exist.");
-	        return;
-	    }
+		Boards board = boardRepository.findById(boardDTO.getId())
+		        .orElseThrow(() -> new BoardNotFoundException("게시글이 존재하지 않습니다. ID: " + boardDTO.getId()));
 
 	    // 존재하면 업데이트 수행
-	    Boards board = BoardMapper.toEntity(boardDTO);
+	    board = BoardMapper.toEntity(boardDTO);
 	    if (board == null) {
 	        System.out.println("BoardMapper.toEntity returned null");
 	        return;
