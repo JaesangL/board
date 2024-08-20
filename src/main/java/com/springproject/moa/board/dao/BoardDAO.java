@@ -15,7 +15,7 @@ public interface BoardDAO {
 	public void increaseViews(Long id);
 	
 	public void updateBoard(BoardDTO boardDTO);
-
-//	public boolean deleteBoard();
+	
+	public void deleteBoard(Long id);
 	
 }

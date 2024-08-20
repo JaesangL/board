@@ -11,5 +11,6 @@ public interface BoardService {
 	public BoardDTO getBoardById(Long id);
 	public void increaseViews(Long id);
 	public void updateBoard(BoardDTO boardDTO);
+	public void deleteBoard(Long id);
 
 }

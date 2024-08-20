@@ -110,4 +110,11 @@ public class BoardDAOImpl implements BoardDAO{
 	        System.out.println("업데이트 실패: " + e.getMessage());
 	    }
 	}
+	
+	//게시판 삭제
+	@Override
+    @Transactional
+    public void deleteBoard(Long id) {
+        boardRepository.deleteById(id);
+    }
 }

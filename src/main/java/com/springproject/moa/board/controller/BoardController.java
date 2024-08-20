@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,6 @@ public class BoardController {
 		List<BoardDTO> boards = boardService.getAllBoards();
 		model.addAttribute("boards", boards);
 		return "boardMain";
-//        return boardService.getAllBoards();
 	}
 
 	// 게시글 작성 페이지
@@ -47,7 +47,7 @@ public class BoardController {
         return boardDTO;
     }
 	
-	/// 게시글 상세 페이지
+	// 게시글 상세 페이지
 	@GetMapping("/board/detail/{id}")
     public String getBoardDetail(@PathVariable("id") Long id, Model model) {
 		boardService.increaseViews(id); // 조회수 증가
@@ -68,4 +68,17 @@ public class BoardController {
             return "게시글 수정 실패";
         }
     }
+	
+	// 게시글 삭제
+	@DeleteMapping("/board/delete/{id}")
+	@ResponseBody
+    public String deleteBoard(@PathVariable("id") Long id) {
+        try {
+            boardService.deleteBoard(id);
+            return "게시글 삭제 성공";
+        } catch (Exception e) {
+            return "게시글 삭제 실패";
+        }
+    }
+	
 }

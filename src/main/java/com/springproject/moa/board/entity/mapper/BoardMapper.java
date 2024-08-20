@@ -12,15 +12,6 @@ public class BoardMapper {
 			return null;
 		}
 		
-//		return Boards.boardBuilder()
-////				.id(dto.getId()) id 자동증가로 인해 주석처리
-//				.title(dto.getTitle())
-//				.author(dto.getAuthor())
-//				.content(dto.getContent())
-//				.date(dto.getDate())
-//				.views(dto.getViews())
-//				.build();
-		
 		Boards.BoardsBuilder builder = Boards.boardBuilder()
                 .title(dto.getTitle())
                 .author(dto.getAuthor())
