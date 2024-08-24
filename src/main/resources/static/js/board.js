@@ -115,20 +115,20 @@ function handlePopState(event) {
 
 // 유효성 검사
 function validateForm() {
-    const title = $('#title').val(); // 제목 가져오기
-    const author = $('#author').val(); // 작성자 가져오기
-    const content = $('#content').val(); // 내용 가져오기
+    const title = $('#title').val(); 
+    const author = $('#author').val(); 
+    const content = $('#content').val();
 
-    if (!title || title.length > 20) { // 제목이 없거나 길이가 100자를 초과하면
-        alert('제목을 확인해주세요. (최대 20자)'); // 경고 메시지 표시
+    if (!title || title.length > 20) {
+        alert('제목을 확인해주세요. (최대 20자)'); 
         return false;
     }
-    if (!author || author.length > 20) { // 작성자가 없거나 길이가 50자를 초과하면
-        alert('작성자를 확인해주세요. (최대 20자)'); // 경고 메시지 표시
+    if (!author || author.length > 20) { 
+        alert('작성자를 확인해주세요. (최대 20자)'); 
         return false;
     }
-    if (!content || content.length > 200) { // 내용이 없거나 길이가 1000자를 초과하면
-        alert('내용을 확인해주세요. (최대 200자)'); // 경고 메시지 표시
+    if (!content || content.length > 200) { 
+        alert('내용을 확인해주세요. (최대 200자)'); 
         return false;
     }
     return true; // 모든 검사를 통과한 경우 true 반환
